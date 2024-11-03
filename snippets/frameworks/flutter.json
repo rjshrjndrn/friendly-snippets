@@ -3,7 +3,7 @@
         "prefix": "statelessW",
         "body": [
             "class ${1:name} extends StatelessWidget {",
-            "  const ${1:name}({Key? key}) : super(key: key);\n",
+            "  const ${1:name}({super.key});\n",
             "  @override",
             "  Widget build(BuildContext context) {",
             "    return Container(",
@@ -18,9 +18,9 @@
         "prefix": "statefulW",
         "body": [
             "class ${1:name} extends StatefulWidget {",
-            "  ${1:name}({Key? key}) : super(key: key);\n",
+            "  ${1:name}({super.key});\n",
             "  @override",
-            "  _${1:WidgetName}State createState() => _${1:WidgetName}State();",
+            "  State<${1:WidgetName}> createState() => _${1:WidgetName}State();",
             "}\n",
             "class _${1:index}State extends State<${1:index}> {",
             "  @override",
@@ -312,11 +312,9 @@
         "prefix": "inheritedW",
         "body": [
             "class ${1:Name} extends InheritedWidget {",
-            "  ${1:Name}({Key? key, required this.child}) : super(key: key, child: child);",
+            "  const ${1:Name}({super.key, required super.child});",
             "",
-            "  final Widget child;",
-            "",
-            "  static ${1:Name}? of(BuildContext context) {",
+            "  static ${1:Name}? maybeOf(BuildContext context) {",
             "    return context.dependOnInheritedWidgetOfExactType<${1:Name}>();",
             "  }",
             "",
@@ -330,12 +328,7 @@
     },
     "Mounted": {
         "prefix": "mounted",
-        "body": [
-            "@override",
-            "bool get mounted {",
-            "  ${0:}",
-            "}"
-        ],
+        "body": ["@override", "bool get mounted {", "  ${0:}", "}"],
         "description": "Whether this State object is currently in a tree."
     },
     "Sink": {
@@ -374,9 +367,7 @@
     },
     "debugPrint": {
         "prefix": "debugP",
-        "body": [
-            "debugPrint(${1:statement});"
-        ],
+        "body": ["debugPrint(${1:statement});"],
         "description": "Prints a message to the console, which you can access using the flutter tool's `logs` command (flutter logs)."
     },
     "Material Package": {
@@ -477,12 +468,7 @@
     },
     "Test": {
         "prefix": "f-test",
-        "body": [
-            "test(",
-            "   \"${1:test description}\",",
-            "   () {},",
-            ");"
-        ],
+        "body": ["test(", "   \"${1:test description}\",", "   () {},", ");"],
         "description": "Create a test function"
     },
     "Test Widgets": {
